@@ -1,4 +1,4 @@
-package com.huamo.common.util;
+package com.xpcomrade.example;
 
 import java.util.List;
 
