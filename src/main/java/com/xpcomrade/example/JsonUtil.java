@@ -1,16 +1,16 @@
-package com.xpcomrade.example;
+package com.huamo.common.util;
+
+import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
-import java.util.List;
-
 public class JsonUtil {
 
 	/**
-	 * °ÑJSONÎÄ±¾parseÎªJSONObject»òÕßJSONArray
+	 * æŠŠJSONæ–‡æœ¬parseä¸ºJSONObjectæˆ–è€…JSONArray
 	 *
 	 * @param text
 	 * @return
@@ -20,7 +20,7 @@ public class JsonUtil {
 	}
 
 	/**
-	 * °ÑJSONÎÄ±¾parse³ÉJSONObject
+	 * æŠŠJSONæ–‡æœ¬parseæˆJSONObject
 	 *
 	 * @param text
 	 * @return
@@ -30,7 +30,7 @@ public class JsonUtil {
 	}
 
 	/**
-	 * °ÑJSONÎÄ±¾parse³ÉJSONArray
+	 * æŠŠJSONæ–‡æœ¬parseæˆJSONArray
 	 *
 	 * @param text
 	 * @return
@@ -40,7 +40,7 @@ public class JsonUtil {
 	}
 
 	/**
-	 * °ÑJSONÎÄ±¾parseÎªJavaBean
+	 * æŠŠJSONæ–‡æœ¬parseä¸ºJavaBean
 	 *
 	 * @param <T>
 	 *
@@ -53,7 +53,7 @@ public class JsonUtil {
 	}
 
 	/**
-	 * °ÑJSONÎÄ±¾parse³ÉJavaBean¼¯ºÏ
+	 * æŠŠJSONæ–‡æœ¬parseæˆJavaBeané›†åˆ
 	 *
 	 * @param <T>
 	 *
@@ -66,7 +66,7 @@ public class JsonUtil {
 	}
 
 	/**
-	 * ½«JavaBeanĞòÁĞ»¯ÎªJSONÎÄ±¾
+	 * å°†JavaBeanåºåˆ—åŒ–ä¸ºJSONæ–‡æœ¬
 	 *
 	 * @param object
 	 * @return
@@ -80,7 +80,7 @@ public class JsonUtil {
 	}
 
 	/**
-	 * ½«JavaBeanĞòÁĞ»¯Îª´ø¸ñÊ½µÄJSONÎÄ±¾
+	 * å°†JavaBeanåºåˆ—åŒ–ä¸ºå¸¦æ ¼å¼çš„JSONæ–‡æœ¬
 	 *
 	 * @param object
 	 * @param prettyFormat
@@ -91,8 +91,8 @@ public class JsonUtil {
 	}
 
 	/**
-	 * ½«JavaBean×ª»»ÎªJSONObject»òÕßJSONArray¡£
-	 * 
+	 * å°†JavaBeanè½¬æ¢ä¸ºJSONObjectæˆ–è€…JSONArrayã€‚
+	 *
 	 * @param javaObject
 	 * @return
 	 */
