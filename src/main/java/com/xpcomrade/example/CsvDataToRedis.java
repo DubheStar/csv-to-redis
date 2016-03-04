@@ -68,7 +68,7 @@ public class CsvDataToRedis {
         Map<String, Object> map = null;
         String lonOffSet = null;
         String latOffSet = null;
-        Jedis jedis = RedisClientWrapper.getResource();
+        Jedis jedis = RedisClientWrapper.getInstance().getResource();
         final Pipeline pipeline = jedis.pipelined();
         int i = 0;
         while (line != null) {
@@ -94,6 +94,7 @@ public class CsvDataToRedis {
         }
 
         reader.close();
+        RedisClientWrapper.getInstance().retrunResource(jedis);
         System.out.println("耗时：" + (System.currentTimeMillis() - start));
         System.out.println(filename + " end ....");
     }
@@ -107,7 +108,7 @@ public class CsvDataToRedis {
         String lonOffSet = null;
         String latOffSet = null;
         Map<String, Object> map = null;
-        Jedis jedis = RedisClientWrapper.getResource();
+        Jedis jedis = RedisClientWrapper.getInstance().getResource();
         final Pipeline pipeline = jedis.pipelined();
         int i = 0;
         for (Object object : content) {
@@ -129,7 +130,7 @@ public class CsvDataToRedis {
         }
         pipeline.sync();
         csvReader.close();
-        RedisClientWrapper.retrunResource(jedis);
+        RedisClientWrapper.getInstance().retrunResource(jedis);
         System.out.println("\n read " + csvFilename + "  end, time consuming:" + (System.currentTimeMillis() - start));
 
     }

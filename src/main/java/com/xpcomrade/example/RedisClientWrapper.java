@@ -5,6 +5,8 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.exceptions.JedisException;
 
+import java.util.ResourceBundle;
+
 
 public class RedisClientWrapper {
 	private static JedisPool jedisPool = null;
@@ -15,12 +17,20 @@ public class RedisClientWrapper {
 	}
 
 	static {
-		JedisPoolConfig poolConfig = new JedisPoolConfig();
-		poolConfig.setMaxTotal(100);
-		poolConfig.setMaxIdle(5);
-		poolConfig.setTestOnBorrow(false);
-		jedisPool = new JedisPool(poolConfig, "172.16.1.77", 6379);
-		dbIndex = 0;
+		ResourceBundle bundle = ResourceBundle.getBundle("redis");
+		if (bundle == null) {
+			throw new IllegalArgumentException("[redis.properties] is not found!");
+		}
+		JedisPoolConfig config = new JedisPoolConfig();
+		config.setMaxTotal(Integer.valueOf(bundle.getString("redis.pool.maxTotal")));
+		config.setMinIdle(Integer.valueOf(bundle.getString("redis.pool.minIdle")));
+		config.setMaxIdle(Integer.valueOf(bundle.getString("redis.pool.maxIdle")));
+		config.setMaxWaitMillis(Long.valueOf(bundle.getString("redis.pool.maxWait")));
+		config.setTestWhileIdle(Boolean.valueOf(bundle.getString("redis.pool.testWhileIdle")));
+		config.setTestOnBorrow(Boolean.valueOf(bundle.getString("redis.pool.testOnBorrow")));
+		config.setTestOnReturn(Boolean.valueOf(bundle.getString("redis.pool.testOnReturn")));
+		jedisPool = new JedisPool(config, bundle.getString("redis.ip"), Integer.valueOf(bundle.getString("redis.port")));
+		dbIndex = Integer.valueOf(bundle.getString("redis.db.index"));
 	}
 
 	public static RedisClientWrapper getInstance() {
@@ -30,13 +40,13 @@ public class RedisClientWrapper {
 		return instance;
 	}
 
-	public static Jedis getResource() {
+	public Jedis getResource() {
 		Jedis jedis = jedisPool.getResource();
 		jedis.select(dbIndex);
 		return jedis;
 	}
 
-	public static void retrunResource(Jedis jedis) {
+	public void retrunResource(Jedis jedis) {
 		jedisPool.returnResource(jedis);
 	}
 
