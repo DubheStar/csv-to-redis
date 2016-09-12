@@ -94,7 +94,7 @@ public class CsvDataToRedis {
         }
 
         reader.close();
-        RedisClientWrapper.getInstance().retrunResource(jedis);
+
         System.out.println("耗时：" + (System.currentTimeMillis() - start));
         System.out.println(filename + " end ....");
     }
