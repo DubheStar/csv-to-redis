@@ -14,7 +14,6 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws Exception {
         String csvFilename = "/Users/xpcomrade/Desktop/employeeTemplet.csv";
-        System.out.println("\n read " + csvFilename + "  begin .....");
         long start = System.currentTimeMillis();
         CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
         List content = csvReader.readAll();
